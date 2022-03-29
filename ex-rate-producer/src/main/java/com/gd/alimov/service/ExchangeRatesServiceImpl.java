@@ -7,8 +7,6 @@ import io.micrometer.core.instrument.util.IOUtils;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.actuate.health.Health;
-import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
@@ -16,7 +14,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Component
-public class ExchangeRatesServiceImpl implements ExchangeRatesService, HealthIndicator {
+public class ExchangeRatesServiceImpl implements ExchangeRatesService {
 
     Logger LOGGER = LoggerFactory.getLogger(ExchangeRatesServiceImpl.class);
 
@@ -75,19 +73,5 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService, HealthInd
         }
         Gson gson = new Gson();
         return gson.toJson(rate);
-    }
-
-    @Override
-    public Health health() {
-        final String EXCHANGE_SERVICE = "Exchange Service";
-
-        if (isServiceHealthGood()) {
-            return Health.up().withDetail(EXCHANGE_SERVICE, "Service is running").build();
-        }
-        return Health.down().withDetail(EXCHANGE_SERVICE, "Service is not available").build();
-    }
-
-    private boolean isServiceHealthGood() {
-        return true;
     }
 }

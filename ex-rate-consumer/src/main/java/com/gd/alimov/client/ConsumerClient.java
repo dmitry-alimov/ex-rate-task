@@ -2,8 +2,6 @@ package com.gd.alimov.client;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
-import org.springframework.boot.actuate.health.Health;
-import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -18,7 +16,7 @@ import java.util.Objects;
 
 @Service
 @Slf4j
-public class ConsumerClient implements HealthIndicator {
+public class ConsumerClient {
 
     private final Logger LOGGER;
 
@@ -60,19 +58,5 @@ public class ConsumerClient implements HealthIndicator {
             LOGGER.error("Error code: " + e.getStatusCode());
         }
         return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
-    }
-
-    @Override
-    public Health health() {
-        String CONSUMER_CLIENT_SERVICE = "Consumer Client";
-
-        if (isServiceHealthGood()) {
-            return Health.up().withDetail(CONSUMER_CLIENT_SERVICE, "Service is running").build();
-        }
-        return Health.down().withDetail(CONSUMER_CLIENT_SERVICE, "Service is not available").build();
-    }
-
-    private boolean isServiceHealthGood() {
-        return true;
     }
 }
