@@ -14,7 +14,7 @@ public class ExchangeRatesController {
     ConsumerClient client;
 
     @GetMapping("api/get")
-    public ResponseEntity<String> getExchangeRateByPairOfCurrencyCodes(@RequestParam String base, @RequestParam String rate) {
-        return client.getRate(base, rate);
+    public ResponseEntity<String> getExchangeRateByPairOfCurrencyCodes(@RequestParam String base, @RequestParam String to) {
+        return client.getExchangeRate(base, to);
     }
 }

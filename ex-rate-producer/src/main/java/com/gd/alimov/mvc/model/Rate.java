@@ -12,6 +12,6 @@ import lombok.ToString;
 @ToString
 public class Rate {
     private final CurrencyCode base;
-    private final CurrencyCode rate;
-    private final Float currency;
+    private final CurrencyCode to;
+    private final Float exchangeRate;
 }

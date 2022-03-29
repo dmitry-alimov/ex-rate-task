@@ -2,20 +2,23 @@ package com.gd.alimov.client;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Objects;
-import java.util.Optional;
 
+@Service
 @Slf4j
-public class ConsumerClient {
+public class ConsumerClient implements HealthIndicator {
 
     private final Logger LOGGER;
 
@@ -26,7 +29,7 @@ public class ConsumerClient {
         this.restTemplate = restTemplate;
     }
 
-    public ResponseEntity<String> getRate(String base, String rate) {
+    public ResponseEntity<String> getExchangeRate(String base, String to) {
         URI uri = null;
 
         try {
@@ -34,29 +37,42 @@ public class ConsumerClient {
                     null,
                     "localhost",
                     8081, "/api/get",
-                    "base=" + base + "&" + "rate=" + rate,
+                    "base=" + base + "&" + "to=" + to,
                     null);
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
 
-        LOGGER.info("Client " + "send request to server...");
+        LOGGER.info("Client send request to server...");
 
-        Optional<ResponseEntity<String>> response = Optional.empty();
+        ResponseEntity<String> responseEntity;
 
         try {
-            ResponseEntity<String> responseEntity = restTemplate.exchange(Objects.requireNonNull(uri),
+            responseEntity = restTemplate.exchange(Objects.requireNonNull(uri),
                     HttpMethod.GET,
-                    new HttpEntity<>("base=" + base + "&" + "rate=" + rate),
+                    new HttpEntity<>("base=" + base + "&" + "to=" + to),
                     String.class);
 
             LOGGER.info("Response status code is: " + responseEntity.getStatusCode());
 
-            response = Optional.of(responseEntity);
-
+            return responseEntity;
         } catch (HttpServerErrorException e) {
             LOGGER.error("Error code: " + e.getStatusCode());
         }
-        return response.orElseGet(() -> new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST));
+        return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
+    }
+
+    @Override
+    public Health health() {
+        String CONSUMER_CLIENT_SERVICE = "Consumer Client";
+
+        if (isServiceHealthGood()) {
+            return Health.up().withDetail(CONSUMER_CLIENT_SERVICE, "Service is running").build();
+        }
+        return Health.down().withDetail(CONSUMER_CLIENT_SERVICE, "Service is not available").build();
+    }
+
+    private boolean isServiceHealthGood() {
+        return true;
     }
 }

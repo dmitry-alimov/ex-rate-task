@@ -9,7 +9,7 @@ Contract.make {
         url("/api/get") {
             queryParameters {
                 parameter("base", "RUB")
-                parameter("rate", "USD")
+                parameter("to", "USD")
             }
         }
     }
@@ -17,8 +17,8 @@ Contract.make {
         status OK()
         body(
                 "base": "RUB",
-                "rate": "USD",
-                "currency": 103.1618
+                "to": "USD",
+                "exchangeRate": 103.1618
         )
         headers {
             contentType('application/json')

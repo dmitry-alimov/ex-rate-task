@@ -2,103 +2,103 @@
   "rates": [
     {
       "base": "RUB",
-      "rate": "AUD",
-      "currency": 76.6025
+      "to": "AUD",
+      "exchangeRate": 76.6025
     },
     {
       "base": "RUB",
-      "rate": "AZN",
-      "currency": 61.3071
+      "to": "AZN",
+      "exchangeRate": 61.3071
     },
     {
       "base": "RUB",
-      "rate": "GBP",
-      "currency": 136.3024
+      "to": "GBP",
+      "exchangeRate": 136.3024
     },
     {
       "base": "RUB",
-      "rate": "AMD",
-      "currency": 21.2771
+      "to": "AMD",
+      "exchangeRate": 21.2771
     },
     {
       "base": "RUB",
-      "rate": "BGN",
-      "currency": 59.0889
+      "to": "BGN",
+      "exchangeRate": 59.0889
     },
     {
       "base": "RUB",
-      "rate": "BRL",
-      "currency": 21.0369
+      "to": "BRL",
+      "exchangeRate": 21.0369
     },
     {
       "base": "RUB",
-      "rate": "HUF",
-      "currency": 30.8705
+      "to": "HUF",
+      "exchangeRate": 30.8705
     },
     {
       "base": "RUB",
-      "rate": "HKD",
-      "currency": 13.375
+      "to": "HKD",
+      "exchangeRate": 13.375
     },
     {
       "base": "RUB",
-      "rate": "DKK",
-      "currency": 15.5363
+      "to": "DKK",
+      "exchangeRate": 15.5363
     },
     {
       "base": "RUB",
-      "rate": "USD",
-      "currency": 103.1618
+      "to": "USD",
+      "exchangeRate": 103.1618
     },
     {
       "base": "RUB",
-      "rate": "EUR",
-      "currency": 115.6002
+      "to": "EUR",
+      "exchangeRate": 115.6002
     },
     {
       "base": "RUB",
-      "rate": "INR",
-      "currency": 13.7513
+      "to": "INR",
+      "exchangeRate": 13.7513
     },
     {
       "base": "RUB",
-      "rate": "KZT",
-      "currency": 20.4893
+      "to": "KZT",
+      "exchangeRate": 20.4893
     },
     {
       "base": "RUB",
-      "rate": "CAD",
-      "currency": 83.0677
+      "to": "CAD",
+      "exchangeRate": 83.0677
     },
     {
       "base": "RUB",
-      "rate": "KGS",
-      "currency": 10.1687
+      "to": "KGS",
+      "exchangeRate": 10.1687
     },
     {
       "base": "RUB",
-      "rate": "CNY",
-      "currency": 16.4716
+      "to": "CNY",
+      "exchangeRate": 16.4716
     },
     {
       "base": "RUB",
-      "rate": "MDL",
-      "currency": 56.7228
+      "to": "MDL",
+      "exchangeRate": 56.7228
     },
     {
       "base": "RUB",
-      "rate": "NOK",
-      "currency": 11.9719
+      "to": "NOK",
+      "exchangeRate": 11.9719
     },
     {
       "base": "RUB",
-      "rate": "PLN",
-      "currency": 24.6357
+      "to": "PLN",
+      "exchangeRate": 24.6357
     },
     {
       "base": "RUB",
-      "rate": "RON",
-      "currency": 23.3665
+      "to": "RON",
+      "exchangeRate": 23.3665
     }
   ]
 }

@@ -35,6 +35,6 @@ public class BasicExchangeRatesControllerIntegrationTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/get?base=RUB&rate=USD")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string("{\"base\":\"RUB\",\"rate\":\"USD\",\"currency\":103.1618}"));
+                .andExpect(content().string("{\"base\":\"RUB\",\"to\":\"USD\",\"exchangeRate\":103.1618}"));
     }
 }

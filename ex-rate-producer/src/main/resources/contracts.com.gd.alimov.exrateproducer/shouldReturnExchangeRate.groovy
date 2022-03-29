@@ -9,12 +9,12 @@ Contract.make {
         url("/api/get") {
             queryParameters {
                 parameter("base", "RUB")
-                parameter("rate", "USD")
+                parameter("to", "USD")
             }
         }
     }
     response {
-        body("{\"base\":\"RUB\",\"rate\":\"USD\",\"currency\":103.1618}")
+        body("{\"base\":\"RUB\",\"to\":\"USD\",\"exchangeRate\":103.1618}")
         status 200
     }
 }

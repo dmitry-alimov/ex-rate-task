@@ -7,14 +7,16 @@ import io.micrometer.core.instrument.util.IOUtils;
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.boot.actuate.health.Health;
+import org.springframework.boot.actuate.health.HealthIndicator;
+import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-@Service
-public class ExchangeRatesServiceImpl implements ExchangeRatesService {
+@Component
+public class ExchangeRatesServiceImpl implements ExchangeRatesService, HealthIndicator {
 
     Logger LOGGER = LoggerFactory.getLogger(ExchangeRatesServiceImpl.class);
 
@@ -32,35 +34,37 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
     public ExchangeRatesServiceImpl() {
     }
 
-    public Rate getCurrency(String base, String rate) {
-        CurrencyCode baseCode = null;
-        CurrencyCode rateCode = null;
+    public Rate getExchangeRate(String base, String to) {
+        CurrencyCode baseCode;
+        CurrencyCode rateCode;
 
         try {
             baseCode = CurrencyCode.valueOf(base);
-            rateCode = CurrencyCode.valueOf(rate);
+            rateCode = CurrencyCode.valueOf(to);
         } catch (IllegalArgumentException e) {
             LOGGER.warn("No currency codes constant");
+            e.printStackTrace();
+            return null;
         }
 
         initialRates();
 
-        if (baseCode != null && rateCode != null) {
-            try {
-                final CurrencyCode finalBaseCode = baseCode;
-                final CurrencyCode finalRateCode = rateCode;
-                return new Rate(baseCode,
-                        rateCode,
-                        rates.stream().filter(r ->
-                                        r.getBase().equals(finalBaseCode))
-                                .filter(r ->
-                                        r.getRate().equals(finalRateCode))
-                                .findFirst()
-                                .orElseThrow()
-                                .getCurrency());
-            } catch (NoSuchElementException e) {
-                LOGGER.warn("No currency present");
-            }
+        try {
+            final CurrencyCode finalBaseCode = baseCode;
+            final CurrencyCode finalRateCode = rateCode;
+            LOGGER.warn("Client send request to get rates");
+            return new Rate(baseCode,
+                    rateCode,
+                    rates.stream().filter(r ->
+                                    r.getBase().equals(finalBaseCode))
+                            .filter(r ->
+                                    r.getTo().equals(finalRateCode))
+                            .findFirst()
+                            .orElseThrow()
+                            .getExchangeRate());
+        } catch (NoSuchElementException e) {
+            LOGGER.warn("No currency present");
+            e.printStackTrace();
         }
         return null;
     }
@@ -71,5 +75,19 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
         }
         Gson gson = new Gson();
         return gson.toJson(rate);
+    }
+
+    @Override
+    public Health health() {
+        final String EXCHANGE_SERVICE = "Exchange Service";
+
+        if (isServiceHealthGood()) {
+            return Health.up().withDetail(EXCHANGE_SERVICE, "Service is running").build();
+        }
+        return Health.down().withDetail(EXCHANGE_SERVICE, "Service is not available").build();
+    }
+
+    private boolean isServiceHealthGood() {
+        return true;
     }
 }

@@ -17,10 +17,10 @@ public class ServerExchangeRatesController {
     private ExchangeRatesService exchangeRatesService;
 
     @GetMapping("/api/get")
-    public ResponseEntity<String> index(@RequestParam String base, @RequestParam String rate) {
+    public ResponseEntity<String> index(@RequestParam String base, @RequestParam String to) {
         return new ResponseEntity<>(exchangeRatesService
                 .toJsonBody(exchangeRatesService
-                        .getCurrency(base, rate)),
+                        .getExchangeRate(base, to)),
                 HttpStatus.OK);
     }
 }

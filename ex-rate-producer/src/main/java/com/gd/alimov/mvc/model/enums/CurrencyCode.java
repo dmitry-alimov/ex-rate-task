@@ -173,4 +173,8 @@ public enum CurrencyCode {
     public String getDescription() {
         return description;
     }
+
+    public CurrencyCode[] getAllCurrencyCode() {
+        return this.getDeclaringClass().getEnumConstants();
+    }
 }
