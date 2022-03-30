@@ -1,10 +1,15 @@
 package contracts
 
 import org.springframework.cloud.contract.spec.Contract
+import org.springframework.http.HttpHeaders
+import org.springframework.http.MediaType
 
 Contract.make {
-    description("Should return currency of pair RUB/USD")
+    description "should return exchange rate"
     request {
+        headers {
+            header(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN)
+        }
         method GET()
         url("/api/get") {
             queryParameters {
@@ -15,13 +20,6 @@ Contract.make {
     }
     response {
         status OK()
-        body(
-                "base": "RUB",
-                "to": "USD",
-                "exchangeRate": 103.1618
-        )
-        headers {
-            contentType('application/json')
-        }
+        body("{\"base\":\"RUB\",\"to\":\"USD\",\"exchangeRate\":103.1618}")
     }
 }

@@ -16,9 +16,13 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+
     <build>
         <plugins>
+            <!-- SPRING CLOUD CONTRACT -->
             <plugin>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-contract-maven-plugin</artifactId>
@@ -26,10 +30,12 @@
                 <extensions>true</extensions>
                 <configuration>
                     <baseClassForTests>
-                        com.gd.alimov.exrateproducer.BaseTestClass
+                        com.gd.alimov.exrateproducer.BaseClassTest
                     </baseClassForTests>
+<!--                    <testFramework>JUNIT5</testFramework>-->
                 </configuration>
             </plugin>
+            <!-- SPRING CLOUD CONTRACT -->
         </plugins>
     </build>
 </project>

@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureMockMvc
 @AutoConfigureJsonTesters
 @AutoConfigureStubRunner(
@@ -29,11 +29,12 @@ public class BasicExchangeRatesControllerIntegrationTest {
     private MockMvc mockMvc;
 
     @Test
-    public void given_WhenPassEvenNumberInQueryParam_ThenReturnEven()
+    public void given_Base_And_To_Currency_Code_Param_ThenReturnExchangeRate_Of_Pairs()
             throws Exception {
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/get?base=RUB&rate=USD")
-                        .contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/get")
+                        .param("base", "RUB")
+                        .param("to", "USD")
+                        .contentType(MediaType.TEXT_PLAIN))
                 .andExpect(status().isOk())
                 .andExpect(content().string("{\"base\":\"RUB\",\"to\":\"USD\",\"exchangeRate\":103.1618}"));
     }
