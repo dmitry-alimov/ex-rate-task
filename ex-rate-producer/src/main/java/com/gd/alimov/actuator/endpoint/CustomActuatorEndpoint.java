@@ -1,4 +1,4 @@
-package com.gd.alimov.service;
+package com.gd.alimov.actuator.endpoint;
 
 import com.gd.alimov.mvc.model.enums.CurrencyCode;
 import org.springframework.boot.actuate.endpoint.annotation.Endpoint;

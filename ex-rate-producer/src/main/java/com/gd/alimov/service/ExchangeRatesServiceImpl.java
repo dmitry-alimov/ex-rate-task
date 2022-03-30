@@ -39,6 +39,7 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
         try {
             baseCode = CurrencyCode.valueOf(base);
             rateCode = CurrencyCode.valueOf(to);
+
         } catch (IllegalArgumentException e) {
             LOGGER.warn("No currency codes constant");
             e.printStackTrace();
@@ -50,7 +51,9 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
         try {
             final CurrencyCode finalBaseCode = baseCode;
             final CurrencyCode finalRateCode = rateCode;
+
             LOGGER.warn("Client send request to get rates");
+
             return new Rate(baseCode,
                     rateCode,
                     rates.stream().filter(r ->
@@ -62,6 +65,7 @@ public class ExchangeRatesServiceImpl implements ExchangeRatesService {
                             .getExchangeRate());
         } catch (NoSuchElementException e) {
             LOGGER.warn("No currency present");
+
             e.printStackTrace();
         }
         return null;

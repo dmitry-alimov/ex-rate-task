@@ -3,6 +3,7 @@ package com.gd.alimov.mvc.controller;
 import com.gd.alimov.service.ExchangeRatesService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,5 +23,10 @@ public class ServerExchangeRatesController {
                 .toJsonBody(exchangeRatesService
                         .getExchangeRate(base, to)),
                 HttpStatus.OK);
+    }
+
+    @GetMapping("api/version")
+    public String getVersion() {
+        return "1.0";
     }
 }
