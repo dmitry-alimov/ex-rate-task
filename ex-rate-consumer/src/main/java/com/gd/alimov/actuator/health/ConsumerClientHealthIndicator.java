@@ -1,8 +1,8 @@
 package com.gd.alimov.actuator.health;
 
 import com.gd.alimov.client.ConsumerClient;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.http.HttpStatus;
@@ -16,11 +16,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-@AllArgsConstructor
 public class ConsumerClientHealthIndicator implements HealthIndicator {
 
     @Autowired
     private ConsumerClient client;
+
+    @Value("${app.actuator.health.connection.server.url}")
+    private String serverUrl;
 
     @Override
     public Health health() {
@@ -50,7 +52,7 @@ public class ConsumerClientHealthIndicator implements HealthIndicator {
 
     public boolean checkServerConnection() {
         try {
-            URL serverURL = new URL("http://localhost:8081/api/version");
+            URL serverURL = new URL(serverUrl);
 
             HttpURLConnection connection = (HttpURLConnection) serverURL.openConnection();
             connection.setRequestMethod("GET");
