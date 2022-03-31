@@ -1,0 +1,104 @@
+{
+  "rates": [
+    {
+      "base": "RUB",
+      "to": "AUD",
+      "exchangeRate": 76.6025
+    },
+    {
+      "base": "RUB",
+      "to": "AZN",
+      "exchangeRate": 61.3071
+    },
+    {
+      "base": "RUB",
+      "to": "GBP",
+      "exchangeRate": 136.3024
+    },
+    {
+      "base": "RUB",
+      "to": "AMD",
+      "exchangeRate": 21.2771
+    },
+    {
+      "base": "RUB",
+      "to": "BGN",
+      "exchangeRate": 59.0889
+    },
+    {
+      "base": "RUB",
+      "to": "BRL",
+      "exchangeRate": 21.0369
+    },
+    {
+      "base": "RUB",
+      "to": "HUF",
+      "exchangeRate": 30.8705
+    },
+    {
+      "base": "RUB",
+      "to": "HKD",
+      "exchangeRate": 13.375
+    },
+    {
+      "base": "RUB",
+      "to": "DKK",
+      "exchangeRate": 15.5363
+    },
+    {
+      "base": "RUB",
+      "to": "USD",
+      "exchangeRate": 103.1618
+    },
+    {
+      "base": "RUB",
+      "to": "EUR",
+      "exchangeRate": 115.6002
+    },
+    {
+      "base": "RUB",
+      "to": "INR",
+      "exchangeRate": 13.7513
+    },
+    {
+      "base": "RUB",
+      "to": "KZT",
+      "exchangeRate": 20.4893
+    },
+    {
+      "base": "RUB",
+      "to": "CAD",
+      "exchangeRate": 83.0677
+    },
+    {
+      "base": "RUB",
+      "to": "KGS",
+      "exchangeRate": 10.1687
+    },
+    {
+      "base": "RUB",
+      "to": "CNY",
+      "exchangeRate": 16.4716
+    },
+    {
+      "base": "RUB",
+      "to": "MDL",
+      "exchangeRate": 56.7228
+    },
+    {
+      "base": "RUB",
+      "to": "NOK",
+      "exchangeRate": 11.9719
+    },
+    {
+      "base": "RUB",
+      "to": "PLN",
+      "exchangeRate": 24.6357
+    },
+    {
+      "base": "RUB",
+      "to": "RON",
+      "exchangeRate": 23.3665
+    }
+  ]
+}
